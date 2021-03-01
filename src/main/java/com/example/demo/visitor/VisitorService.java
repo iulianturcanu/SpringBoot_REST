@@ -1,12 +1,20 @@
 package com.example.demo.visitor;
 
-import com.sun.tools.javac.util.List;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class VisitorService {
 
+    private final VisitorRepository visitorRepository;
+
+    @Autowired
+    public VisitorService(VisitorRepository visitorRepository) {
+        this.visitorRepository = visitorRepository;
+    }
+
     public List<Visitor> getVisitors(){
-        return List.of(new Visitor(1L,"Al", 24,"al@gmail.com"));
+        return visitorRepository.findAll();
     }
 }
