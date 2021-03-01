@@ -1,8 +1,18 @@
 package com.example.demo.visitor;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table
 public class Visitor {
+
+    @Id
+    @SequenceGenerator(name="visitor_sequence",
+                        sequenceName = "visitor_sequence",
+                        allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+                    generator = "visitor_sequence")
     private Long id;
     private String name;
     private Integer age;
