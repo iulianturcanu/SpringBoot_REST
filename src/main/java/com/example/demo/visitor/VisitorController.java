@@ -3,9 +3,11 @@ package com.example.demo.visitor;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.Entity;
+
 @RestController
 @RequestMapping(path = "api/v1/visitor")
 public class VisitorController {
@@ -19,6 +21,11 @@ public class VisitorController {
     @GetMapping
     public List<Visitor> getVisitors(){
         return visitorService.getVisitors();
+    }
+
+    @PostMapping
+    public ResponseEntity<?> addVisitor(@RequestBody VisitorDTO visitorDTO){
+        return ResponseEntity.accepted().build();
     }
 
 }

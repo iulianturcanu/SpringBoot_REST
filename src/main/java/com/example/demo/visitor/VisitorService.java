@@ -14,7 +14,7 @@ public class VisitorService {
         this.visitorRepository = visitorRepository;
     }
 
-    public List<Visitor> getVisitors(){
+    public List<Visitor> getVisitors() {
         return visitorRepository.findAll();
     }
 }
