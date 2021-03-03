@@ -31,4 +31,12 @@ public class VisitorService {
         }
         visitorRepository.save(visitor);
     }
+
+    public void deleteById(Long id) {
+        if(!(visitorRepository.existsById(id))){
+            throw new IllegalStateException("visitor with id " + id + " does not exist");
+        }
+        visitorRepository.deleteById(id);
+
+    }
 }

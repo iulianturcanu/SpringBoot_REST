@@ -28,6 +28,11 @@ public class VisitorController {
         visitorService.addNewVisitor(visitor);
     }
 
+    @DeleteMapping(path="{studentId}")
+    public void deleteVisitor(@PathVariable("studentId") Long id){
+        visitorService.deleteById(id);
+    }
+
 //    @PostMapping
 //    public ResponseEntity<?> addVisitor(@RequestBody VisitorDTO visitorDTO){
 //        return ResponseEntity.accepted().build();
