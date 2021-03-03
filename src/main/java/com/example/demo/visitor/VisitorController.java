@@ -24,8 +24,13 @@ public class VisitorController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addVisitor(@RequestBody VisitorDTO visitorDTO){
-        return ResponseEntity.accepted().build();
+    public void registerNewVisitor(@RequestBody Visitor visitor){
+        visitorService.addNewVisitor(visitor);
     }
+
+//    @PostMapping
+//    public ResponseEntity<?> addVisitor(@RequestBody VisitorDTO visitorDTO){
+//        return ResponseEntity.accepted().build();
+//    }
 
 }

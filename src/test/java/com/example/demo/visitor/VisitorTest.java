@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class VisitorTest {
+
     @Autowired
     VisitorRepository visitorRepository;
 
@@ -12,6 +13,6 @@ public class VisitorTest {
     public void testOne() {
         Visitor v = new Visitor();
         visitorRepository.save(v);
-        Assertions.assertEquals(0, v.getId());
+        Assertions.assertEquals(3, v.getId());
     }
 }

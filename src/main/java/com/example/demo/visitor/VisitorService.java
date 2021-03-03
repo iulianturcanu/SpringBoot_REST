@@ -17,4 +17,12 @@ public class VisitorService {
     public List<Visitor> getVisitors() {
         return visitorRepository.findAll();
     }
+
+    public void saveVisitor(Visitor v){
+        visitorRepository.save(v);
+    }
+
+    public void addNewVisitor(Visitor visitor) {
+
+    }
 }
