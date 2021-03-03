@@ -23,6 +23,11 @@ public class VisitorController {
         return visitorService.getVisitors();
     }
 
+    @GetMapping(path="{id}")
+    public Visitor getById(@PathVariable("id") Long id){
+        return visitorService.getVisitorById(id);
+    }
+
     @PostMapping
     public void registerNewVisitor(@RequestBody Visitor visitor){
         visitorService.addNewVisitor(visitor);
@@ -46,9 +51,6 @@ public class VisitorController {
         visitorService.updateVisitor(visitorId, name, email);
     }
 
-//    @PostMapping
-//    public ResponseEntity<?> addVisitor(@RequestBody VisitorDTO visitorDTO){
-//        return ResponseEntity.accepted().build();
-//    }
+
 
 }

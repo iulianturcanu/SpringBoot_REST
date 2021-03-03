@@ -22,10 +22,13 @@ public class VisitorService {
     public List<Visitor> getVisitors() {
         return visitorRepository.findAll();
     }
-
-    public void saveVisitor(Visitor v){
-        visitorRepository.save(v);
+    
+    public Visitor getVisitorById(Long id){
+       if(!visitorRepository.existsById(id)){
+           throw new IllegalStateException("visitor with id " + id + " does not exist" );
+       }return visitorRepository.findById(id).get();
     }
+
 
     public void addNewVisitor(Visitor visitor) {
         Optional<Visitor> visitorByEmail = visitorRepository.findVisitorByEmail(visitor.getEmail());
