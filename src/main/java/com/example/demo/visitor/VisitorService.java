@@ -39,4 +39,8 @@ public class VisitorService {
         visitorRepository.deleteById(id);
 
     }
+
+    public void deleteAll(){
+        visitorRepository.deleteAll();
+    }
 }

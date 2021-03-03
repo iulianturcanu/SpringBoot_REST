@@ -33,6 +33,11 @@ public class VisitorController {
         visitorService.deleteById(id);
     }
 
+    @DeleteMapping
+    public void deleteAllVisitors(){
+        visitorService.deleteAll();
+    }
+
 //    @PostMapping
 //    public ResponseEntity<?> addVisitor(@RequestBody VisitorDTO visitorDTO){
 //        return ResponseEntity.accepted().build();
