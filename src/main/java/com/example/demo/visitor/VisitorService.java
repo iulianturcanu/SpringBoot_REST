@@ -1,6 +1,8 @@
 package com.example.demo.visitor;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,10 @@ public class VisitorService {
     }
 
     public void addNewVisitor(Visitor visitor) {
-
+        Optional<Visitor> visitorByEmail = visitorRepository.findVisitorByEmail(visitor.getEmail());
+    if(visitorByEmail.isPresent()){
+        throw new IllegalStateException("email already exists");
+        }
+        visitorRepository.save(visitor);
     }
 }
