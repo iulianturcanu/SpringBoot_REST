@@ -28,14 +28,22 @@ public class VisitorController {
         visitorService.addNewVisitor(visitor);
     }
 
-    @DeleteMapping(path="{studentId}")
-    public void deleteVisitor(@PathVariable("studentId") Long id){
+    @DeleteMapping(path="{visitorId}")
+    public void deleteVisitor(@PathVariable("visitorId") Long id){
         visitorService.deleteById(id);
     }
 
     @DeleteMapping
     public void deleteAllVisitors(){
         visitorService.deleteAll();
+    }
+
+    @PutMapping(path="{visitorId}")
+    public void updateVisitor(
+            @PathVariable("visitorId") Long visitorId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String email ){
+        visitorService.updateVisitor(visitorId, name, email);
     }
 
 //    @PostMapping

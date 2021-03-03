@@ -1,10 +1,13 @@
 package com.example.demo.visitor;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 @Service
 public class VisitorService {
@@ -42,5 +45,22 @@ public class VisitorService {
 
     public void deleteAll(){
         visitorRepository.deleteAll();
+    }
+
+    @Transactional
+    public void updateVisitor (Long id, String name, String email){
+       Visitor visitor = visitorRepository.findById(id).orElseThrow(()-> new IllegalStateException("student with "
+       + id + " does not exist"));
+
+       if(name != null && name.length() > 0 && !Objects.equals(name, visitor.getName())){
+           visitor.setName(name);
+        }
+
+        if(email != null && email.length() > 0 && !Objects.equals(email, visitor.getEmail())){
+            visitor.setEmail(email);
+        }
+
+
+
     }
 }
