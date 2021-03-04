@@ -12,12 +12,12 @@ import javax.persistence.Entity;
 @RestController
 @RequestMapping(path = "api/v1/visitor")
 public class VisitorController {
-    private final VisitorService visitorService;
-
     @Autowired
-    public VisitorController(VisitorService visitorService) {
-        this.visitorService = visitorService;
-    }
+    private VisitorService visitorService;
+
+//    public VisitorController(VisitorService visitorService) {
+//        this.visitorService = visitorService;
+//    }
 
     @GetMapping("/authenticated")
     public String checkAuthenticated(Principal user) {
