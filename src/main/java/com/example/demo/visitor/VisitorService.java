@@ -22,7 +22,7 @@ public class VisitorService {
     public List<Visitor> getVisitors() {
         return visitorRepository.findAll();
     }
-    
+
     public Visitor getVisitorById(Long id){
        if(!visitorRepository.existsById(id)){
            throw new IllegalStateException("visitor with id " + id + " does not exist" );
@@ -52,7 +52,7 @@ public class VisitorService {
 
     @Transactional
     public void updateVisitor (Long id, String name, String email){
-       Visitor visitor = visitorRepository.findById(id).orElseThrow(()-> new IllegalStateException("student with "
+       Visitor visitor = visitorRepository.findById(id).orElseThrow(()-> new IllegalStateException("visitor with "
        + id + " does not exist"));
 
        if(name != null && name.length() > 0 && !Objects.equals(name, visitor.getName())){

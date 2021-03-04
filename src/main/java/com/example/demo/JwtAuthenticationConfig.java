@@ -1,0 +1,19 @@
+package com.example.demo;
+
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@EnableWebSecurity
+public class JwtAuthenticationConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable();
+//        http.authorizeRequests().anyRequest().permitAll();
+
+        http
+                .authorizeRequests(expressionInterceptUrlRegistry -> expressionInterceptUrlRegistry.anyRequest().authenticated())
+                .oauth2ResourceServer().jwt();
+    }
+}
