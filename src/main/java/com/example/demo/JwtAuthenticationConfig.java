@@ -9,11 +9,8 @@ public class JwtAuthenticationConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-//        http.csrf().disable();
-//        http.authorizeRequests().anyRequest().permitAll();
-
-        http
-                .authorizeRequests(expressionInterceptUrlRegistry -> expressionInterceptUrlRegistry.anyRequest().authenticated())
+        http.authorizeRequests(
+                expressionInterceptUrlRegistry -> expressionInterceptUrlRegistry.anyRequest().authenticated())
                 .oauth2ResourceServer().jwt();
     }
 }
