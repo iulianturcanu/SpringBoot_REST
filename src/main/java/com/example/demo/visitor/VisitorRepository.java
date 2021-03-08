@@ -8,8 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface VisitorRepository extends JpaRepository<Visitor,Long> {
-//    List<Visitor> findAllByName(String name);
-//    List<Visitor> findAllByNameAndEmailOrderById(String name, String email);
+
 
     Optional<Visitor> findVisitorByEmail(String email);
 }
