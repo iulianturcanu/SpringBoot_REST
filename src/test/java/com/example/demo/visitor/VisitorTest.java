@@ -58,4 +58,6 @@ public class VisitorTest {
     visitorRepository.save(testVisitor);
     Assertions.assertEquals(testVisitor,visitorRepository.findVisitorByEmail("mike@gmail.ca").get());
     }
+
+
 }
