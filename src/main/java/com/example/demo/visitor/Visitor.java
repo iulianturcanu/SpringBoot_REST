@@ -2,6 +2,7 @@ package com.example.demo.visitor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table
@@ -81,4 +82,16 @@ public class Visitor {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Visitor visitor = (Visitor) o;
+        return Objects.equals(getName(), visitor.getName()) && Objects.equals(getAge(), visitor.getAge()) && Objects.equals(getEmail(), visitor.getEmail());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getAge(), getEmail());
+    }
 }
