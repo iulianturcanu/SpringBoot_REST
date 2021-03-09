@@ -30,6 +30,7 @@ public class VisitorService {
     }
 
 
+
     public void addNewVisitor(Visitor visitor) {
         Optional<Visitor> visitorByEmail = visitorRepository.findVisitorByEmail(visitor.getEmail());
     if(visitorByEmail.isPresent()){
