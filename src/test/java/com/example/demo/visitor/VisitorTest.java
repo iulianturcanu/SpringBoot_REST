@@ -19,4 +19,11 @@ public class VisitorTest {
         visitorRepository.save(v);
         Assertions.assertEquals(3, v.getId());
     }
+
+    @Test
+    public void testDeleteById(){
+        visitorRepository.deleteById(2L);
+        Assertions.assertEquals(2, visitorRepository.findAll().size());
+        Assertions.assertTrue(!(visitorRepository.existsById(2L)));
+    }
 }
