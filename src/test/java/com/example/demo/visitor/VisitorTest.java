@@ -19,7 +19,7 @@ public class VisitorTest {
     VisitorRepository visitorRepository;
 
     @BeforeEach
-    public void purgeDbAddTwoVisitors(){
+    public void AddTwoVisitors(){
         Visitor v1 = new Visitor("Moe", 24,"al@gmail.com");
         Visitor v2 = new Visitor("Joe", 42,"li@gmail.com");
         List<Visitor> visitorList = new ArrayList<>();
