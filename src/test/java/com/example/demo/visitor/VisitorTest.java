@@ -4,13 +4,13 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.event.annotation.AfterTestClass;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+import static org.junit.jupiter.api.Assertions.fail;
+
 @Import(MyTestConfiguration.class)
 @SpringBootTest
 public class VisitorTest {
@@ -18,9 +18,8 @@ public class VisitorTest {
     @Autowired
     VisitorRepository visitorRepository;
 
-    @BeforeTestClass
+    @BeforeEach
     public void purgeDbAddTwoVisitors(){
-        visitorRepository.deleteAll();
         Visitor v1 = new Visitor("Moe", 24,"al@gmail.com");
         Visitor v2 = new Visitor("Joe", 42,"li@gmail.com");
         List<Visitor> visitorList = new ArrayList<>();
@@ -29,29 +28,34 @@ public class VisitorTest {
         visitorRepository.saveAll(visitorList);
     }
 
-    @AfterTestClass
+    @AfterEach
     public void purgeDb(){
         visitorRepository.deleteAll();
     }
 
 
+
     @Test
-    @Order(1)
     public void testAddVisitor() {
         Visitor testVisitor = new Visitor("John", 55, "john@gmail.ca");
         visitorRepository.save(testVisitor);
-        Assertions.assertEquals(3, testVisitor.getId());
+        Visitor foundVisitor = visitorRepository.findVisitorByEmail("john@gmail.ca").orElseThrow(IllegalStateException::new);
+        Assertions.assertEquals(55, foundVisitor.getAge());
     }
 
-    @Order(2)
     @Test
     public void testDeleteById(){
-        visitorRepository.deleteById(2L);
         Assertions.assertEquals(2, visitorRepository.findAll().size());
-        Assertions.assertTrue(!(visitorRepository.existsById(2L)));
+        Optional<Visitor> optionalVisitor = visitorRepository.findVisitorByEmail("al@gmail.com");
+        if (!optionalVisitor.isPresent()) {
+            fail("not good");
+        }
+        Visitor visitor = optionalVisitor.get();
+        Long id = visitor.getId();
+        visitorRepository.deleteById(id);
+        Assertions.assertFalse(visitorRepository.existsById(id));
     }
 
-    @Order(3)
     @Test
     public void testGetByEmail(){
     Visitor testVisitor = new Visitor("Mike", 77, "mike@gmail.ca");
