@@ -16,5 +16,4 @@ public class LunchboxDto {
     private String description;
     private Integer capacity;
     private List<LunchboxItem> lunchboxItemsList;
-    private Long itemId;
 }

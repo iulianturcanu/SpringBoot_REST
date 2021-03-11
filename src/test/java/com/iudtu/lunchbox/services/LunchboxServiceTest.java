@@ -18,7 +18,7 @@ public class LunchboxServiceTest {
 
     @Test
     public void testCreate() {
-        LunchboxDto lunchboxDto = lunchboxService.create(new Lunchbox("Bogdan", "strap", 5, new ArrayList<LunchboxItem>(5), 1L));
+        LunchboxDto lunchboxDto = lunchboxService.create(new Lunchbox());
         Assertions.assertNotNull(lunchboxDto);
     }
 }

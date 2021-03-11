@@ -23,7 +23,6 @@ public class LunchboxService {
         lunchboxDto.setDescription(lunchbox.getDescription());
         lunchboxDto.setCapacity(lunchbox.getCapacity());
         lunchboxDto.setLunchboxItemsList(lunchbox.getLunchboxItemsList());
-        lunchboxDto.setItemId(lunchbox.getItemId());
         return lunchboxDto;
     }
 }

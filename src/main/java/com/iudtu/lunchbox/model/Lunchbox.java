@@ -10,7 +10,7 @@ import java.util.List;
 @Table
 @Setter
 @Getter
-@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @EqualsAndHashCode
 public class Lunchbox {
@@ -27,14 +27,12 @@ public class Lunchbox {
     private Integer capacity;
     @OneToMany(mappedBy = "lunchbox")
     private List<LunchboxItem> lunchboxItemsList;
-    private Long itemId;
 
-    public Lunchbox(String owner, String description, Integer capacity, List<LunchboxItem> lunchboxItemsList, Long itemId){
+    public Lunchbox(String owner, String description, Integer capacity, List<LunchboxItem> lunchboxItemsList){
         this.setOwner(owner);
         this.setDescription(description);
         this.setCapacity(capacity);
         this.setLunchboxItemsList(lunchboxItemsList);
-        this.setItemId(itemId);
 
     }
 }
