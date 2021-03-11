@@ -1,7 +1,6 @@
 package com.example.demo.visitor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity

@@ -3,8 +3,7 @@ package com.iudtu.lunchbox.dto;
 import lombok.Data;
 
 @Data
-public class LunchboxItemDto {
-    private String name;
-    private boolean isHealthy;
+public class InventoryDto {
+    private Long count;
     private ItemType itemType;
 }
