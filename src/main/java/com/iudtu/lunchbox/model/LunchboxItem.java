@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table
 @Setter
 @Getter
-@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @EqualsAndHashCode
 public class LunchboxItem {
@@ -24,6 +24,7 @@ public class LunchboxItem {
     @ManyToOne
     @JoinColumn(name="itemId", nullable=false)
     private Lunchbox lunchbox;
+    @Column(unique = true)
     private String name;
     private boolean isHealthy;
     private ItemType itemType;
