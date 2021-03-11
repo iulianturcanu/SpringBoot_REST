@@ -16,7 +16,7 @@ public class LunchboxService {
         this.lunchboxRepository = lunchboxRepository;
     }
 
-    public LunchboxDto create(Lunchbox lunchbox) {
+    public LunchboxDto createLunchboxDto(Lunchbox lunchbox) {
         LunchboxDto lunchboxDto = new LunchboxDto();
         lunchboxDto.setId(lunchbox.getId());
         lunchboxDto.setOwner(lunchbox.getOwner());
