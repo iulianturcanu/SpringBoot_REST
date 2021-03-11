@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=visitor
+  app:
+    container_name: my_springboot_app
+    image: iudtu/demo_sb
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+
