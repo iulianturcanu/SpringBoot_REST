@@ -1,6 +1,7 @@
 package com.iudtu.lunchbox.services;
 
 import com.iudtu.lunchbox.dto.LunchboxDto;
+import com.iudtu.lunchbox.dto.mapper.LunchboxMapper;
 import com.iudtu.lunchbox.model.Lunchbox;
 import com.iudtu.lunchbox.repository.LunchboxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,7 @@ public class LunchboxService {
         this.lunchboxRepository = lunchboxRepository;
     }
 
-    public LunchboxDto createLunchboxDto(Lunchbox lunchbox) {
-        LunchboxDto lunchboxDto = new LunchboxDto();
-        lunchboxDto.setId(lunchbox.getId());
-        lunchboxDto.setOwner(lunchbox.getOwner());
-        lunchboxDto.setDescription(lunchbox.getDescription());
-        lunchboxDto.setCapacity(lunchbox.getCapacity());
-        lunchboxDto.setLunchboxItemsList(lunchbox.getLunchboxItemsList());
-        return lunchboxDto;
+    public LunchboxDto create() {
+        return LunchboxMapper.toLunchboxDto(new Lunchbox());
     }
 }

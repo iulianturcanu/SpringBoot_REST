@@ -14,8 +14,8 @@ public class LunchboxServiceTest {
     LunchboxService lunchboxService;
 
     @Test
-    public void testCreateLunchboxDto() {
-        LunchboxDto lunchboxDto = lunchboxService.createLunchboxDto(new Lunchbox());
+    public void testCreate() {
+        LunchboxDto lunchboxDto = lunchboxService.create();
         Assertions.assertNotNull(lunchboxDto);
     }
 }
