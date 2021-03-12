@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,11 +38,21 @@ public class LunchboxService {
     }
 
     public LunchboxDto findWithDescription(String description) {
-    Lunchbox withDescription = lunchboxRepository.findLunchboxByDescription(description).orElseThrow(IllegalAccessError::new);
-    return LunchboxMapper.toLunchboxDto(withDescription);
+        Lunchbox withDescription = lunchboxRepository.findLunchboxByDescription(description).orElseThrow(IllegalStateException::new);
+        return LunchboxMapper.toLunchboxDto(withDescription);
     }
 
     public void deleteAll() {
         lunchboxRepository.deleteAll();
     }
+
+    public void saveOne(Lunchbox lunchbox){
+        lunchboxRepository.save(lunchbox);
+    }
+
+    public void saveAll(Iterable<Lunchbox> lunchboxes){
+        lunchboxes.forEach(lunchboxRepository::save);
+    }
+
+
 }
