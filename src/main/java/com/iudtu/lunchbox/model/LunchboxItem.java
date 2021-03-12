@@ -21,13 +21,18 @@ public class LunchboxItem {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
             generator = "lunchboxItem_sequence")
     private Long id;
+
+    private String name;
+    private boolean isHealthy;
+    @Enumerated(EnumType.STRING)
+    private ItemType itemType;
+
+//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "name")
+//    private Inventory inventory;
+
     @ManyToOne
     @JoinColumn(name="itemId", nullable=false)
     private Lunchbox lunchbox;
-    @Column(unique = true)
-    private String name;
-    private boolean isHealthy;
-    private ItemType itemType;
 
     public LunchboxItem(String name, boolean isHealthy, ItemType itemType){
         this.setName(name);

@@ -19,13 +19,19 @@ public class Inventory {
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
             generator = "inventory_sequence")
+
     private Long id;
-    @Column(unique = true)
-    private String itemName;
     private Integer count;
 
-    public Inventory(String itemName, Integer count){
-        this.setItemName(itemName);
+    @Column(name = "name", unique = true)
+    private String name;
+
+//    @OneToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "name", nullable = false)
+//    private LunchboxItem lunchboxItem;
+
+    public Inventory(String name, Integer count){
+        this.setName(name);
         this.setCount(count);
     }
 }
