@@ -7,10 +7,9 @@ import com.iudtu.lunchbox.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
-public class InventoryService {
+
+public abstract class InventoryService {
     private final InventoryRepository inventoryRepository;
 
     @Autowired
@@ -18,5 +17,18 @@ public class InventoryService {
         this.inventoryRepository = inventoryRepository;
     }
 
+    private boolean mustRestock(Inventory inventory){
+        return inventory.getCount() <= 5;
+    }
+
+    public ArrayList<InventoryDto> needsRestocking(){
+        ArrayList<Inventory> allInventory =(ArrayList<Inventory>)inventoryRepository.findAll();
+        ArrayList<InventoryDto> toRestock = new ArrayList<>();
+        for(Inventory item: allInventory){
+            if(mustRestock(item)){
+                toRestock.add(InventoryMapper.toInventoryDto(item));
+            }return toRestock;
+        }return new ArrayList<>();
+    }
 
 }
