@@ -8,5 +8,4 @@ import javax.persistence.NamedQuery;
 import java.util.Optional;
 
 public interface InventoryRepository extends CrudRepository<Inventory, Long> {
-    Optional<Inventory> findByLunchboxItemNameAndCount(Integer count);
 }

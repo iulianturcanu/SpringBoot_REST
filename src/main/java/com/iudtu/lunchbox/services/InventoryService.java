@@ -18,12 +18,5 @@ public class InventoryService {
         this.inventoryRepository = inventoryRepository;
     }
 
-    public List<InventoryDto> needsRestocking(Integer count){
-        ArrayList<InventoryDto> foundItems= new ArrayList<>();
-        Optional<Inventory> toRestock = inventoryRepository.findByLunchboxItemNameAndCount(count);
-        if(toRestock.isPresent()){
-            foundItems.add(InventoryMapper.toInventoryDto(toRestock.get()));
-            return foundItems;
-        } throw new IllegalStateException("nothing to restock");
-    }
+
 }
