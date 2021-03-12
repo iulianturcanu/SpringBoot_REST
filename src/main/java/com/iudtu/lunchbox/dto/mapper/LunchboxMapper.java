@@ -5,7 +5,7 @@ import com.iudtu.lunchbox.model.Lunchbox;
 
 public class LunchboxMapper {
 
-    public static LunchboxDto toLunchboxDto(Lunchbox lunchbox){
+    public static LunchboxDto toLunchboxDto(Lunchbox lunchbox) {
         LunchboxDto lunchboxDto = new LunchboxDto();
         lunchboxDto.setId(lunchbox.getId());
         lunchboxDto.setOwner(lunchbox.getOwner());
@@ -13,5 +13,9 @@ public class LunchboxMapper {
         lunchboxDto.setCapacity(lunchbox.getCapacity());
         lunchboxDto.setLunchboxItemsList(lunchbox.getLunchboxItemsList());
         return lunchboxDto;
+    }
+
+    public static LunchboxDto findByOwner(String owner) {
+        return null;
     }
 }

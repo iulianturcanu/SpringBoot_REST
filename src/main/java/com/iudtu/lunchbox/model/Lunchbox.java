@@ -25,6 +25,7 @@ public class Lunchbox {
     private String owner;
     private String description;
     private Integer capacity;
+
     @OneToMany(mappedBy = "lunchbox")
     private List<LunchboxItem> lunchboxItemsList;
 

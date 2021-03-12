@@ -7,9 +7,9 @@ public class InventoryMapper {
 
     public  static InventoryDto toInventoryDto(Inventory inventory){
         InventoryDto inventoryDto = new InventoryDto();
-        inventoryDto.setName(inventory.getName());
         inventoryDto.setId(inventory.getId());
         inventoryDto.setCount(inventory.getCount());
+        inventoryDto.setItemList(inventory.getItemList());
         return inventoryDto;
     }
 }

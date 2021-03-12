@@ -2,7 +2,11 @@ package com.iudtu.lunchbox.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.iudtu.lunchbox.model.LunchboxItem;
 import lombok.Data;
+
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -10,6 +14,6 @@ import lombok.Data;
 public class InventoryDto {
 
     private Long id;
-    private String name;
     private Integer count;
+    private List<LunchboxItem> itemList;
 }

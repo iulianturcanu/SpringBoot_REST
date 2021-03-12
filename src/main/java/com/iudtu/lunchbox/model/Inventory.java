@@ -3,6 +3,7 @@ package com.iudtu.lunchbox.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
@@ -23,15 +24,12 @@ public class Inventory {
     private Long id;
     private Integer count;
 
-    @Column(name = "name", unique = true)
-    private String name;
+    @OneToMany(mappedBy = "inventory")
+    private List<LunchboxItem> itemList;
 
-//    @OneToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "name", nullable = false)
-//    private LunchboxItem lunchboxItem;
 
-    public Inventory(String name, Integer count){
-        this.setName(name);
+    public Inventory(Integer count, List<LunchboxItem> itemList){
         this.setCount(count);
+        this.setItemList(itemList);
     }
 }
