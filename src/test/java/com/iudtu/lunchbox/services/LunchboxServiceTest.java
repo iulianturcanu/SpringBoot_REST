@@ -3,7 +3,6 @@ package com.iudtu.lunchbox.services;
 import com.iudtu.lunchbox.dto.LunchboxDto;
 import com.iudtu.lunchbox.model.Lunchbox;
 import com.iudtu.lunchbox.model.LunchboxItem;
-import com.iudtu.lunchbox.repository.LunchboxRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,11 +30,7 @@ public class LunchboxServiceTest {
         lunchboxService.deleteAll();
     }
 
-    @Test
-    public void testCreate() {
-        LunchboxDto lunchboxDto = lunchboxService.create();
-        Assertions.assertNotNull(lunchboxDto);
-    }
+
 
     @Test
     public void testAddWithOwner(){
@@ -49,5 +44,9 @@ public class LunchboxServiceTest {
         Assertions.assertEquals("Gabriel", found.getOwner());
     }
 
+    @Test
+    public void testAddItems() {}
 
+    @Test
+    public void testRemoveItems() {}
 }

@@ -12,7 +12,7 @@ public class LunchboxItemMapper {
         lunchboxItemDto.setName(lunchboxItem.getName());
         lunchboxItemDto.setHealthy(lunchboxItem.isHealthy());
         lunchboxItemDto.setLunchbox(lunchboxItem.getLunchbox());
-        lunchboxItemDto.setInventory(lunchboxItem.getInventory());
+        lunchboxItemDto.setInventoryItem(lunchboxItem.getInventoryItem());
         return lunchboxItemDto;
     }
 }

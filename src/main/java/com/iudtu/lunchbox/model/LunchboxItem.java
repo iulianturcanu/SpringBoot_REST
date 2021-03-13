@@ -31,13 +31,13 @@ public class LunchboxItem {
 
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "item_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "lunchbox_id", nullable = true)
     private Lunchbox lunchbox;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "inventory_id", nullable = false)
-    private Inventory inventory;
+    @OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private InventoryItem inventoryItem;
 
     public LunchboxItem(String name, boolean isHealthy, ItemType itemType, Lunchbox lunchbox){
         this.setName(name);
