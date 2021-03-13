@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
@@ -29,6 +28,7 @@ public class VisitorService {
            throw new IllegalStateException("visitor with id " + id + " does not exist" );
        }return visitorRepository.findById(id).get();
     }
+
 
 
     public void addNewVisitor(Visitor visitor) {
