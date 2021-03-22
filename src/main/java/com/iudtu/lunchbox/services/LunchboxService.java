@@ -50,7 +50,7 @@ public class LunchboxService {
         lunchboxRepository.save(lunchbox);
     }
 
-    public void saveAll(Iterable<Lunchbox> lunchboxes){
+    public void saveAll(List<Lunchbox> lunchboxes){
         lunchboxes.forEach(lunchboxRepository::save);
     }
 

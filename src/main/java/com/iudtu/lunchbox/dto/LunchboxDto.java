@@ -7,7 +7,10 @@ import lombok.*;
 
 import java.util.List;
 
-@Data
+@Setter
+@Getter
+@NoArgsConstructor
+@EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class LunchboxDto {

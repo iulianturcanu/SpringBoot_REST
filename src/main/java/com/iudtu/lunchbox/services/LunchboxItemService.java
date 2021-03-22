@@ -18,7 +18,7 @@ public class LunchboxItemService {
     }
 
     public LunchboxItemDto findByName(String name){
-        LunchboxItem found = lunchboxItemRepository.findByName(name).orElseThrow(IllegalStateException::new);
+        LunchboxItem found = lunchboxItemRepository.findOneByName(name).orElseThrow(IllegalStateException::new);
         return LunchboxItemMapper.toLunchboxItemDto(found);
     }
 

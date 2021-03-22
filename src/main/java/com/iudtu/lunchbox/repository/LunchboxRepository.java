@@ -1,5 +1,6 @@
 package com.iudtu.lunchbox.repository;
 
+import com.iudtu.lunchbox.dto.LunchboxDto;
 import com.iudtu.lunchbox.model.Lunchbox;
 import org.springframework.data.repository.CrudRepository;
 

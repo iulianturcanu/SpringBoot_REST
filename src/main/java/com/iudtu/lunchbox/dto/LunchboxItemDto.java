@@ -4,9 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.iudtu.lunchbox.model.InventoryItem;
 import com.iudtu.lunchbox.model.Lunchbox;
-import lombok.Data;
+import lombok.*;
 
-@Data
+
+
+@Setter
+@Getter
+@NoArgsConstructor
+@EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class LunchboxItemDto {

@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Setter
 @Getter
 @NoArgsConstructor
-@ToString
 @EqualsAndHashCode
 public class LunchboxItem {
 
@@ -35,7 +34,7 @@ public class LunchboxItem {
     @JoinColumn(name = "lunchbox_id", nullable = true)
     private Lunchbox lunchbox;
 
-    @OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "item")
     @PrimaryKeyJoinColumn
     private InventoryItem inventoryItem;
 

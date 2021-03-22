@@ -14,4 +14,6 @@ public interface InventoryItemRepository extends CrudRepository<InventoryItem, L
     List<InventoryItem> findAll();
 
     Optional<InventoryItem> findOneByItem(LunchboxItem item);
+
+
 }

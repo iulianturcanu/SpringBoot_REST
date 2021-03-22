@@ -6,29 +6,25 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-//@Table
 @Setter
 @Getter
 @NoArgsConstructor
-//@ToString
-//@EqualsAndHashCode
+@EqualsAndHashCode
 public class InventoryItem {
 
     @Id
     @Column(name = "item_id")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Integer count;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id")
     @MapsId
     private LunchboxItem item;
 
 
-//    public InventoryItem(Integer count, LunchboxItem item){
-//        this.setCount(count);
-//        this.setItem(item);
-//    }
+    public InventoryItem(Integer count){
+        this.setCount(count);
+    }
 }

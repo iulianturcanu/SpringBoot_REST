@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 
 @Service
@@ -37,14 +34,20 @@ public class InventoryService  {
         return InventoryItemMapper.toInventoryDto(new InventoryItem());
     }
 
+
     public Set<LunchboxItem> whatItemsNeedRestocking() {
-        return null;
+
+        Iterable<LunchboxItem> allItems = lunchboxItemRepository.findAll();
+        Set<LunchboxItem> needRestocking = new HashSet<>();
+        for(LunchboxItem item: allItems){
+            if(needsRestocking(item)){
+                needRestocking.add(item);
+            }
+        }
+        return needRestocking;
     }
 
-    public boolean needsRestocking() {
-//        return inventory.getCount() <= MINIMAL_STOCK;
-        return false;
-    }
+
 
     public boolean needsRestocking(LunchboxItem item) {
         Optional<InventoryItem> optionalInventoryItem = inventoryItemRepository.findOneByItem(item);
@@ -65,11 +68,28 @@ public class InventoryService  {
     }
 
     public void addItems(LunchboxItemDto item, int count) {
-
+        LunchboxItem foundLunchboxItem = lunchboxItemRepository.findOneByName(item.getName()).orElseThrow(IllegalStateException::new);
+        InventoryItem foundItem = foundLunchboxItem.getInventoryItem();
+        int oldCount = foundItem.getCount();
+        foundItem.setCount(oldCount+count);
+        foundLunchboxItem.setInventoryItem(foundItem);
+        lunchboxItemRepository.save(foundLunchboxItem);
     }
+
+
 
     public void removeItems(LunchboxItemDto item, int count) throws InventoryException {
 
+        LunchboxItem foundLunchboxItem = lunchboxItemRepository.findOneByName(item.getName()).orElseThrow(IllegalStateException::new);
+        InventoryItem foundItem = foundLunchboxItem.getInventoryItem();
+
+        int oldCount = foundItem.getCount();
+        if(count > oldCount){
+            throw new InventoryException();
+        }
+        foundItem.setCount(oldCount-count);
+        foundLunchboxItem.setInventoryItem(foundItem);
+        lunchboxItemRepository.save(foundLunchboxItem);
     }
 
 
@@ -78,8 +98,7 @@ public class InventoryService  {
         newLunchboxItem.setItemType(newItem.getItemType());
         newLunchboxItem.setHealthy(newItem.isHealthy());
         newLunchboxItem.setName(newItem.getName());
-        InventoryItem inventoryItem = new InventoryItem();
-        inventoryItem.setCount(0);
+        InventoryItem inventoryItem = new InventoryItem(1);
         inventoryItem.setItem(newLunchboxItem);
         newLunchboxItem.setInventoryItem(inventoryItem);
         LunchboxItem savedLunchboxItem = lunchboxItemRepository.save(newLunchboxItem);
@@ -87,5 +106,20 @@ public class InventoryService  {
 
         InventoryItemDto inventoryItemDto = Mapper.map(savedInventoryItem, InventoryItemDto.class);
         return inventoryItemDto;
+    }
+
+    public void deleteLunchboxItem(LunchboxItemDto item) {
+    Optional<LunchboxItem> itemToDelete = lunchboxItemRepository.findOneByName(item.getName());
+    lunchboxItemRepository.delete(itemToDelete.get());
+    }
+
+    public void deleteAll() {
+        lunchboxItemRepository.deleteAll();
+    }
+
+    public InventoryItemDto findOneByItem(LunchboxItem lunchboxItem) {
+        InventoryItem foundItem = inventoryItemRepository.findOneByItem(lunchboxItem).orElseThrow(IllegalStateException::new);
+        return Mapper.map(foundItem, InventoryItemDto.class);
+
     }
 }
